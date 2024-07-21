@@ -10,6 +10,9 @@ python = "^3.11"
 fastapi = "^0.111.1"
 pydantic = "^2.8.2"
 pydantic-settings = "^2.3.4"
+sqlalchemy = "^2.0.31"
+psycopg2 = "^2.9.9"
+psycopg2-binary = "^2.9.9"
 
 
 [tool.poetry.group.dev.dependencies]
