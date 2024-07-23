@@ -7,7 +7,7 @@ class DataBaseSettings(BaseSettings):
     password: str = Field('postgres', env='POSTGRES_PASS')
     database: str = Field('postgres', env='POSTGRES_DB')
     host: str = Field('localhost', env='POSTGRES_HOST')
-    port: int = Field(5432, env='POSTGRES_PORT')
+    port: int = Field(5433, env='POSTGRES_PORT')
 
     @property
     def uri(self) -> str:
