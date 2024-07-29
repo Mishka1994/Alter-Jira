@@ -20,7 +20,7 @@ def get(person_id: int, db: Session = Depends(get_db)) -> PersonStruct:
 
 @person_router.post('/')
 def create(person: CreatePersonStruct, db: Session = Depends(get_db)) -> PersonStruct:
-    return PersonService.create_pesron(person, db)
+    return PersonService.create_person(person, db)
 
 
 @person_router.put('/{person_id}')
