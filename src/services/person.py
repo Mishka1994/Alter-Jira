@@ -1,6 +1,3 @@
-from fastapi import Depends
-
-from config.db import get_db
 from models.person import Person
 from structs.person import PersonStruct, CreatePersonStruct, UpdatePersonStruct
 
@@ -19,7 +16,7 @@ class PersonService:
         return data
 
     @classmethod
-    def create_pesron(cls, data: CreatePersonStruct, db) -> PersonStruct:
+    def create_person(cls, data: CreatePersonStruct, db) -> PersonStruct:
         person = Person(**data.model_dump())
         db.add(person)
         db.commit()
