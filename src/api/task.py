@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from config.db import get_db
+from models.task import Task
 from services.task import TaskService
 from structs.task import CreateTaskStruct, TaskStruct, UpdateTaskStruct
 
@@ -10,24 +11,29 @@ task_router = APIRouter(prefix='/task', tags=['Task'])
 
 @task_router.get('/')
 def all_(db: Session = Depends(get_db)) -> list[TaskStruct]:
-    return TaskService.get_all_tasks(db)
+    service: TaskService = TaskService(model=Task, struct=TaskStruct, db=db)
+    return service.get_all()
 
 
 @task_router.get('/{task_ud}')
 def get(task_id: int, db: Session = Depends(get_db)) -> TaskStruct:
-    return TaskService.get_task_by_id(task_id, db)
+    service: TaskService = TaskService(model=Task, struct=TaskStruct, db=db)
+    return service.get_by_id(task_id)
 
 
 @task_router.post('/')
 def create(task: CreateTaskStruct, db: Session = Depends(get_db)) -> TaskStruct:
-    return TaskService.create_task(task, db)
+    service: TaskService = TaskService(model=Task, struct=TaskStruct, db=db)
+    return service.create(task)
 
 
 @task_router.put('/{task_id}')
 def update(task: int, data: UpdateTaskStruct, db: Session = Depends(get_db)) -> TaskStruct:
-    return TaskService.update_task(task, data, db)
+    service: TaskService = TaskService(model=Task, struct=TaskStruct, db=db)
+    return service.update(task, data)
 
 
 @task_router.delete('/{task_id}')
 def delete(task: int, db: Session = Depends(get_db)):
-    return TaskService.delete_task(task, db)
+    service: TaskService = TaskService(model=Task, struct=TaskStruct, db=db)
+    return service.delete(task)
