@@ -20,5 +20,5 @@ class Task(Base):
     description = Column(String, nullable=False)
     status = Column(EnumType(TaskStatus), nullable=False)
 
-    # person_id = Column(Integer, nullable=False)
+    person_id = Column(Integer, nullable=False)
     # person = relationship('Person', back_populates='Task')

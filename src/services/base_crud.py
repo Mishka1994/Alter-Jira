@@ -1,3 +1,6 @@
+from fastapi import HTTPException
+
+
 class BaseCRUD:
     def __init__(self, model, struct, db):
         self._model = model
@@ -6,6 +9,8 @@ class BaseCRUD:
 
     def get_by_id(self, id_: int):
         queue = self._db.query(self._model).filter(self._model.id == id_).first()
+        if not queue:
+            raise HTTPException(status_code=404, detail='Not found')
         return self._struct.model_validate(queue)
 
     def get_all(self):
@@ -21,6 +26,8 @@ class BaseCRUD:
 
     def update(self, id_: int, data):
         model = self._db.query(self._model).filter(self._model.id == id).first()
+        if not model:
+            raise HTTPException(status_code=404, detail='Not found')
         for key, value in data.dict().items():
             setattr(model, key, value)
         self._db.commit()
