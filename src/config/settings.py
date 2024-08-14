@@ -18,3 +18,5 @@ class AppSettings(BaseSettings):
     db: DataBaseSettings = DataBaseSettings()
     title: str = 'Alter Jira'
     version: str = '1.0.1'
+
+settings = AppSettings()

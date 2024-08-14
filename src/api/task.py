@@ -6,7 +6,7 @@ from models.task import Task
 from services.task import TaskService
 from structs.task import CreateTaskStruct, TaskStruct, UpdateTaskStruct
 
-task_router = APIRouter(prefix='/task', tags=['Task'])
+task_router = APIRouter(prefix='/tasks', tags=['Task'])
 
 
 @task_router.get('/')
@@ -15,7 +15,7 @@ def all_(db: Session = Depends(get_db)) -> list[TaskStruct]:
     return service.get_all()
 
 
-@task_router.get('/{task_ud}')
+@task_router.get('/{task_id}')
 def get(task_id: int, db: Session = Depends(get_db)) -> TaskStruct:
     service: TaskService = TaskService(model=Task, struct=TaskStruct, db=db)
     return service.get_by_id(task_id)

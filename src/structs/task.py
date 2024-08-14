@@ -5,6 +5,7 @@ class BaseTaskStruct(BaseModel):
     name: str
     description: str
     status: str
+    person_id: int
 
     model_config = ConfigDict(from_attributes=True)
 
