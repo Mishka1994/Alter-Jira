@@ -25,7 +25,7 @@ class BaseCRUD:
         return self._struct.model_validate(model)
 
     def update(self, id_: int, data):
-        model = self._db.query(self._model).filter(self._model.id == id).first()
+        model = self._db.query(self._model).filter(self._model.id == id_).first()
         if not model:
             raise HTTPException(status_code=404, detail='Not found')
         for key, value in data.dict().items():
@@ -37,4 +37,4 @@ class BaseCRUD:
     def delete(self, id_: int):
         self._db.query(self._model).filter(self._model.id == id_).delete()
         self._db.commit()
-        return {'message': f'{self._model} deleted successfully'}
+        return {'message': 'Model instance deleted successfully'}
