@@ -22,8 +22,8 @@ def test_db(override_settings):
     Base.metadata.create_all(bind=engine)
     TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     yield TestingSessionLocal()
-    # if database_exists(override_settings.db.uri):
-    #     drop_database(override_settings.db.uri)
+    if database_exists(override_settings.db.uri):
+        drop_database(override_settings.db.uri)
 
 
 @pytest.fixture(scope='session', autouse=True)

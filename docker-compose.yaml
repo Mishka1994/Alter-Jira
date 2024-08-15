@@ -16,3 +16,28 @@ services:
       interval: 10s
       timeout: 10s
       retries: 5
+
+  web-dev:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+      target: test
+    container_name: web-dev
+    ports:
+      - '8000:8000'
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web-prod:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+      target: prod
+    container_name: web-prod
+    ports:
+      - '8001:8000'
+    depends_on:
+      db:
+        condition: service_healthy
+

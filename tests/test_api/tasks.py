@@ -30,8 +30,8 @@ class TestTasks:
         task = Task(**data_task)
         test_db.add(task)
         test_db.commit()
-
-        response = client.get('/tasks/1')
+        test_db.refresh(task)
+        response = client.get(f'/tasks/{task.id}')
         assert response.status_code == 200
         assert response.json() == {
             'description': 'very important task',
