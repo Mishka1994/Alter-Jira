@@ -28,12 +28,12 @@ def create(task: CreateTaskStruct, db: Session = Depends(get_db)) -> TaskStruct:
 
 
 @task_router.put('/{task_id}')
-def update(task: int, data: UpdateTaskStruct, db: Session = Depends(get_db)) -> TaskStruct:
+def update(task_id: int, data: UpdateTaskStruct, db: Session = Depends(get_db)) -> TaskStruct:
     service: TaskService = TaskService(model=Task, struct=TaskStruct, db=db)
-    return service.update(task, data)
+    return service.update(task_id, data)
 
 
 @task_router.delete('/{task_id}')
-def delete(task: int, db: Session = Depends(get_db)):
+def delete(task_id: int, db: Session = Depends(get_db)):
     service: TaskService = TaskService(model=Task, struct=TaskStruct, db=db)
-    return service.delete(task)
+    return service.delete(task_id)
