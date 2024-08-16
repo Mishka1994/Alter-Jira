@@ -1,46 +1,7 @@
-import pytest
+from tests.test_api.fixture import data_task, data_person, second_data_task, update_task
 
 from models.person import Person
 from models.task import Task
-
-
-@pytest.fixture
-def data_task():
-    return {
-        'description': 'very important task',
-        'id': 1,
-        'person_id': 1,
-        'status': 'todo',
-        'name': 'task1'
-    }
-
-
-@pytest.fixture
-def update_task():
-    return {
-        'name': 'task1',
-        'description': 'very important task',
-        'person_id': 1,
-        'status': 'done'
-    }
-
-
-@pytest.fixture
-def second_data_task():
-    return {
-        'description': 'not important task',
-        'id': 2,
-        'person_id': 1,
-        'status': 'done',
-        'name': 'task2'
-    }
-
-
-@pytest.fixture
-def data_person():
-    return {
-        'name': 'Test_person1'
-    }
 
 
 class TestTasks:
