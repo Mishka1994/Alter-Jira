@@ -6,7 +6,7 @@ from models.person import Person
 from services.person import PersonService
 from structs.person import PersonStruct, CreatePersonStruct, UpdatePersonStruct
 
-person_router = APIRouter(prefix='/person', tags=['Person'])
+person_router = APIRouter(prefix='/persons', tags=['Person'])
 
 
 @person_router.get('/', response_model=list[PersonStruct])
