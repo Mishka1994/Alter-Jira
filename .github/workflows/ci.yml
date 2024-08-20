@@ -67,6 +67,8 @@ jobs:
       - name: Install dependencies
         run: poetry install
 
+      - name: Create role
+        run: psql -U postgres -b postgres && CREATE ROLE runner WITH SUPERUSER
 
       - name: Run tests
         run: poetry run pytest
