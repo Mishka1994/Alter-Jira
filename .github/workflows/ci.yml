@@ -27,7 +27,7 @@ jobs:
         run: poetry install
 
       - name: Check code formatting
-        run: poetry run poe black-check
+        run: poetry run pre-commit run --all-files
 
 
   test:
