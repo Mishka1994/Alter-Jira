@@ -23,3 +23,14 @@ sqlalchemy-utils = "^0.41.2"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.pytest.ini_options]
+minversion = '6.0'
+addopts = '-ra -q'
+pythonpath = [
+    'src',
+]
+testpaths = [
+    'tests',
+]

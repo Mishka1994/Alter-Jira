@@ -19,6 +19,8 @@ def test_db(override_settings):
         drop_database(override_settings.db.uri)
     create_database(override_settings.db.uri)
     from config.db import Base
+    from models.person import Person  # noqa
+    from models.task import Task  # noqa
 
     engine = create_engine(override_settings.db.uri)
     Base.metadata.create_all(bind=engine)

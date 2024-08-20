@@ -10,7 +10,6 @@ def update_person():
 def data_task():
     return {
         "description": "very important task",
-        "id": 1,
         "person_id": 1,
         "status": "todo",
         "name": "task1",
@@ -31,7 +30,6 @@ def update_task():
 def second_data_task():
     return {
         "description": "not important task",
-        "id": 2,
         "person_id": 1,
         "status": "done",
         "name": "task2",
