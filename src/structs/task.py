@@ -20,4 +20,3 @@ class UpdateTaskStruct(BaseTaskStruct):
 
 class TaskStruct(BaseTaskStruct):
     id: int
-

@@ -16,14 +16,14 @@ class TestTasks:
         test_db.commit()
         test_db.refresh(task)
 
-        response = client.get(f'/tasks/{task.id}')
+        response = client.get(f"/tasks/{task.id}")
         assert response.status_code == 200
         assert response.json() == {
-            'description': 'very important task',
-            'id': 1,
-            'person_id': 1,
-            'status': 'todo',
-            'name': 'task1'
+            "description": "very important task",
+            "id": 1,
+            "person_id": 1,
+            "status": "todo",
+            "name": "task1",
         }
 
     def test_list(self, client, data_person, data_task, second_data_task, test_db):
@@ -39,23 +39,23 @@ class TestTasks:
         test_db.refresh(task_1)
         test_db.refresh(task_2)
 
-        response = client.get('/tasks/')
+        response = client.get("/tasks/")
         assert response.status_code == 200
         assert response.json() == [
             {
-                'description': 'very important task',
-                'id': 1,
-                'person_id': 1,
-                'status': 'todo',
-                'name': 'task1'
+                "description": "very important task",
+                "id": 1,
+                "person_id": 1,
+                "status": "todo",
+                "name": "task1",
             },
             {
-                'description': 'not important task',
-                'id': 2,
-                'person_id': 1,
-                'status': 'done',
-                'name': 'task2'
-            }
+                "description": "not important task",
+                "id": 2,
+                "person_id": 1,
+                "status": "done",
+                "name": "task2",
+            },
         ]
 
     def test_create(self, client, test_db, data_person, data_task):
@@ -64,14 +64,14 @@ class TestTasks:
         test_db.commit()
         test_db.refresh(person)
 
-        response = client.post('/tasks/', json=data_task)
+        response = client.post("/tasks/", json=data_task)
         assert response.status_code == 200
         assert response.json() == {
-            'description': 'very important task',
-            'id': 1,
-            'person_id': 1,
-            'status': 'todo',
-            'name': 'task1'
+            "description": "very important task",
+            "id": 1,
+            "person_id": 1,
+            "status": "todo",
+            "name": "task1",
         }
 
     def test_update(self, client, test_db, data_person, data_task, update_task):
@@ -85,14 +85,14 @@ class TestTasks:
         test_db.commit()
         test_db.refresh(task)
 
-        response = client.put(f'/tasks/{task.id}', json=update_task)
+        response = client.put(f"/tasks/{task.id}", json=update_task)
         assert response.status_code == 200
         assert response.json() == {
-            'id': 1,
-            'name': 'task1',
-            'description': 'very important task',
-            'person_id': 1,
-            'status': 'done'
+            "id": 1,
+            "name": "task1",
+            "description": "very important task",
+            "person_id": 1,
+            "status": "done",
         }
 
     def test_delete(self, client, test_db, data_person, data_task):
@@ -106,6 +106,6 @@ class TestTasks:
         test_db.commit()
         test_db.refresh(task)
 
-        response = client.delete(f'/tasks/{task.id}')
+        response = client.delete(f"/tasks/{task.id}")
         assert response.status_code == 200
-        assert response.json() == {'message': 'Model instance deleted successfully'}
+        assert response.json() == {"message": "Model instance deleted successfully"}
