@@ -67,8 +67,6 @@ jobs:
       - name: Install dependencies
         run: poetry install
 
-      - name: Create User
-        run: psql -U postgres
 
       - name: Run tests
         run: poetry run pytest
